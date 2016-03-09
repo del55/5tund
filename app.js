@@ -105,15 +105,49 @@
 
      },
 	 deleteJar: function(event){
-     //millele vajutasin
+
+		// millele vajutasin SPAN
 		console.log(event.target);
 
-    //tema parent ehk mille sees ta on
-    console.log(event.target.parentNode);
-    console.log(event.target.parentNode.parentNode);
+		// tema parent ehk mille sees ta on LI
+		console.log(event.target.parentNode);
 
-    //mille sees on ul
-    console.log(event.target.dataset);
+		//mille sees see on UL
+		console.log(event.target.parentNode.parentNode);
+
+		//id
+		console.log(event.target.dataset.id);
+
+		var c = confirm("Oled kindel?");
+
+		// vajutas no, pani ristist kinni
+		if(!c){	return; }
+
+		//KUSTUTAN
+		console.log('kustutan');
+
+		// KUSTUTAN HTMLI
+		var ul = event.target.parentNode.parentNode;
+		var li = event.target.parentNode;
+
+		ul.removeChild(li);
+
+		//KUSTUTAN OBJEKTI ja uuenda localStoragit
+
+		var delete_id = event.target.dataset.id;
+
+		for(var i = 0; i < this.jars.length; i++){
+
+			if(this.jars[i].id == delete_id){
+				//see on see
+				//kustuta kohal i objekt Ć¤ra
+				this.jars.splice(i, 1);
+				break;
+			}
+		}
+
+		localStorage.setItem('jars', JSON.stringify(this.jars));
+
 
 
 	 },
